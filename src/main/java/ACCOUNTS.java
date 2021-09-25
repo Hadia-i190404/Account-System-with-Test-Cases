@@ -74,6 +74,21 @@ public class ACCOUNTS {
 	}
 	public void setphn(String phne)
 	{
+		if(phne==null)
+		{
+			throw new IllegalArgumentException("Phone number compulsory");
+		}
+		else
+		{
+			if(phne.length()<11)
+			{
+				throw new IllegalArgumentException("Number not Correct");
+			}
+			else if(phne.length()>11)
+			{
+				throw new IllegalArgumentException("Phone Number too Long");
+			}
+		}
 		phn=phne;
 	}
 	public String getphn()
@@ -90,6 +105,21 @@ public class ACCOUNTS {
 	}
 	public void setAccno(int no)
 	{
+		if(no==0)
+		{
+			throw new IllegalArgumentException("Acc no Compulsory");
+		}
+		else
+		{
+			if(String.valueOf(no).length()>2)
+			{
+				throw new IllegalArgumentException("invalid acc no");
+			}
+			else if(String.valueOf(no).length()==1)
+			{
+				throw new IllegalArgumentException("Non existent acc no");
+			}
+		}
 		Accno=no;
 	}
 	public int getAccno()
@@ -98,6 +128,21 @@ public class ACCOUNTS {
 	}
 	public void setbnktype(String bnk)
 	{
+		if(bnk==null)
+		{
+			throw new IllegalArgumentException("Username can't be black");
+		}
+		else
+		{
+			if(bnk=="save")
+			{
+				throw new IllegalArgumentException("Right in Capital");
+			}
+			else if(bnk=="check")
+			{
+				throw new IllegalArgumentException("Right IN caPITAL");
+			}
+		}
 		bnktype=bnk;
 	}
 	public String getbnktype()
@@ -236,7 +281,7 @@ public class ACCOUNTS {
 		
 		return blnc;
 	}
-	public void printstatement(int accno,int amount)
+	public int printstatement(int accno,int amount)
 	{
 		try {
 			
@@ -249,6 +294,7 @@ public class ACCOUNTS {
 		if(amount>blnc)
 		{
 			System.out.println("Exceeds current balance");
+			return 0;
 		}
 		else
 		{
@@ -278,6 +324,7 @@ public class ACCOUNTS {
 		}
 		
 		System.out.println("Remaining Balance is "+blnc);
+		return 1;
 	
 		}
 	}	
@@ -392,7 +439,7 @@ public class ACCOUNTS {
 		System.out.println("Balance is "+ blnc);
 	}
 	
-	public void detail(int accno)
+	public boolean detail(int accno)
 	{
 		try {
 			
@@ -407,6 +454,7 @@ public class ACCOUNTS {
 		System.out.println("Contact Information is "+phn);
 		System.out.println("Date of creation is "+Acc_date);
 		System.out.println("Balance in account is "+blnc);
+		return true;
 	}
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
